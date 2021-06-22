@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Szczególy produktu</title>
+</head>
+<body>
+<div th:replace="fragments :: menu"/>
+<div>
+    <div>Opcje administratora</div>
+    <div><span> <a th:href="@{/products/newproduct}">Dodanie nowego produktu</a></span></div>
+    <div>Opcja 2</div>
+    <div>Opcja 3</div>
+    <div>Opcja 4</div>
+</div>
+<div th:replace="fragments :: footer"/>
+</body>
+</html>

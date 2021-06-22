@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Nowy produkt</title>
+</head>
+<body>
+<div th:replace="fragments :: menu"/>
+<div>
+    <div>Dodanie nowego produktu</div>
+    <form class="container" th:action="@{/products/newproduct}" method="post"
+          th:object="${product}">
+        <div>
+            <label>Name:</label>
+            <input id="lName" type="text" th:field="*{name}"/>
+        </div>
+        <div>
+            <label>Description:</label>
+            <input id="lDescription" type="text" th:field="*{description}"/>
+        </div>
+        <div>
+            <label>Image:</label>
+            <input id="lImage" type="text" th:field="*{image}"/>
+        </div>
+        <div>
+            <label>Price:</label>
+            <input id="lPrice" type="text" th:field="*{price}"/>
+        </div>
+        <input type="submit"/>
+    </form></div>
+<div th:replace="fragments :: footer"/>
+</body>
+</html>

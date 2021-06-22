@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Szczególy produktu</title>
+</head>
+<body>
+<div th:replace="fragments :: menu"/>
+<div>
+    <div>Szczegóły produktu</div>
+    <strong th:text="${product.name}" class="item-price"></strong>
+    <div th:text="${product.price}"/>
+    <div th:text="${product.description}"/>
+    <img th:src="@{/images/{image} (image=${product.image})}" alt="Image" class="img-fluid">
+</div>
+<div th:replace="fragments :: footer"/>
+</body>
+</html>
