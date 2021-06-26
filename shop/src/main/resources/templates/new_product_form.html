@@ -9,7 +9,11 @@
 <div>
     <div>Dodanie nowego produktu</div>
     <form class="container" th:action="@{/products/newproduct}" method="post"
-          th:object="${product}">
+          th:object="${product}" enctype="multipart/form-data">
+        <!--        <div>
+                    <label>ID:</label>
+                    <input id="fId" type="text" th:field="*{id}"/>
+                </div>-->
         <div>
             <label>Name:</label>
             <input id="lName" type="text" th:field="*{name}"/>
@@ -26,8 +30,9 @@
             <label>Price:</label>
             <input id="lPrice" type="text" th:field="*{price}"/>
         </div>
+        <input type="file" name="imageFile"/> <br/><br/>
         <input type="submit"/>
-    </form></div>
-<div th:replace="fragments :: footer"/>
+    </form>
+</div>
 </body>
 </html>
