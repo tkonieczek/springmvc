@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import pl.sda.shop.dao.ProductDAO;
 import pl.sda.shop.model.Product;
+import pl.sda.shop.model.User;
 
 import java.io.File;
 import java.nio.file.Files;
@@ -23,6 +24,7 @@ public class ProductController {
 
     @Value("${app.upload.dir:${user.home}}")
     public String uploadDir;
+
     private ProductDAO productDAO;
 
     @Autowired
@@ -37,13 +39,48 @@ public class ProductController {
         return "products_list";
     }
 
-    @GetMapping("/{id}")
+    @ModelAttribute("user")
+    private User getUser() {
+        return new User(1, "marian@gmail.ocm", "Marian", "Andrzej");
+    }
+
+/*    @GetMapping("/{id}")
     public String getProductById(Model model, @PathVariable int id) {
         Product productById = productDAO.getProductById(id);
         model.addAttribute("product", productById);
         return "product_details";
-    }
+    }*/
 
+    //Dodanie do Cart kilku tych samych produkow  --- SPOSOB 1
+   /* @GetMapping("/{id}")
+    public String getProductById(Model model, @PathVariable int id) {
+        Product pr = productDAO.getProductById(id);
+        CartItem cartItem = new CartItem();
+        cartItem.setProductName(pr.getName());
+        cartItem.setProductId(pr.getId());
+
+        model.addAttribute("product", pr);
+        model.addAttribute("cartItem", cartItem);
+
+        return "product_details";
+    } */
+
+    //Dodanie do Cart kilku tych samych produkow  --- SPOSOB 2
+/*    @GetMapping("/{id}")
+    public String getProductById(Model model, @PathVariable int id) {
+        Product pr = productDAO.getProductById(id);
+        CartItem cartItem = new CartItem();
+        model.addAttribute("product", pr);
+        model.addAttribute("cartItem", cartItem);
+        return "product_details";
+    }*/
+
+    @GetMapping("/{id}")
+    public String getProductById(Model model, @PathVariable int id) {
+        Product pr = productDAO.getProductById(id);
+        model.addAttribute("product", pr);
+        return "product_details";
+    }
 
     @GetMapping("/newproduct")
     public String getProductForm(Model model) {
@@ -58,8 +95,9 @@ public class ProductController {
         return "redirect:/products/list";
 
     }
-    private void uploadFile(MultipartFile file) {
 
+
+    private void uploadFile(MultipartFile file) {
         try {
             Path copyLocation = Paths
                     .get(uploadDir + File.separator + StringUtils.cleanPath(file.getOriginalFilename()));

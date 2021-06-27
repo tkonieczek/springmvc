@@ -6,12 +6,42 @@
 </head>
 <body>
 <div th:replace="fragments :: menu"/>
+<div>Jestes zalogowany jako <span th:text="${user.name}"></span></div>
 <div>
     <div>Szczegóły produktu</div>
     <strong th:text="${product.name}" class="item-price"></strong>
     <div th:text="${product.price}"/>
     <div th:text="${product.description}"/>
     <img th:src="@{/images/{image} (image=${product.image})}" alt="Image" class="img-fluid">
+
+    <!-- sposob 1-->
+    <!--<form class="container" th:action="@{/cart/add}" method="post"
+          th:object="${cartItem}">
+        <label>Ilość</label>
+        <input id="quantity" type="text" th:field="*{productQuantity}"/>
+        <input id="productName"  type="hidden" th:field="*{productName}"/>
+        <input id="productId" type="hidden" th:field="*{productId}"/>
+        <input type="submit" value="Add to cart"/>
+    </form> -->
+
+    <!-- sposob 2 -->
+<!--   <form class="container" th:action="@{/cart/add}" method="post"
+          th:object="${cartItem}">
+        <label>Ilość</label>
+        <input id="quantity" type="text" th:field="*{productQuantity}"/>
+        <input type="hidden" th:value="${product.name}" th:attr="name='productName'"/>
+        <input type="hidden" th:value="${product.id}" th:attr="name='productId'"/>
+        <input type="submit" value="Add to cart"/>
+    </form>-->
+
+    <!-- sposob 3 -->
+    <form class="container" th:action="@{/cart/add}" method="post">
+        <label>Ilość</label>
+        <input id="quantity" type="text" th:attr="name='quantity'"/>
+        <input type="hidden" th:value="${product.name}" th:attr="name='productName'"/>
+        <input type="hidden" th:value="${product.id}" th:attr="name='productId'"/>
+        <input type="submit" value="Add to cart"/>
+    </form>
 </div>
 <div th:replace="fragments :: footer"/>
 </body>
