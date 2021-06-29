@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import pl.sda.shop.dao.ListProductDAO;
 import pl.sda.shop.dao.ProductDAO;
 import pl.sda.shop.model.Product;
 import pl.sda.shop.model.User;
@@ -43,13 +44,6 @@ public class ProductController {
     private User getUser() {
         return new User(1, "marian@gmail.ocm", "Marian", "Andrzej");
     }
-
-/*    @GetMapping("/{id}")
-    public String getProductById(Model model, @PathVariable int id) {
-        Product productById = productDAO.getProductById(id);
-        model.addAttribute("product", productById);
-        return "product_details";
-    }*/
 
     //Dodanie do Cart kilku tych samych produkow  --- SPOSOB 1
    /* @GetMapping("/{id}")

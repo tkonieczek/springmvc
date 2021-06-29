@@ -24,17 +24,17 @@ public class CartController {
     }
 
     // dodanie dla koszyka SPOSOB 1 i SPOSOB 2
-/*    @PostMapping("/add")
+    @PostMapping("/add")
     public String addProductToCart(CartItem cartItem) {
         cart.addItemToCart(cartItem);
         return "redirect:/products/" + cartItem.getProductId();
-    }*/
+    }
 
     // dodanie dla koszyka SPOSOB 3
-    @PostMapping("/add")
+/*    @PostMapping("/add")
     public String addProductToCart(@RequestParam int quantity, @RequestParam String productName, @RequestParam int productId) {
         CartItem cartItem = new CartItem(productId, productName, quantity);
         cart.addItemToCart(cartItem);
         return "redirect:/products/" + cartItem.getProductId();
-    }
+    }*/
 }
